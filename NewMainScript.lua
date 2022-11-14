@@ -145,12 +145,12 @@ if suc and type(web) ~= "boolean" then
         vapelite = Drawing.new("Image")
         vapelite2 = Drawing.new("Image")
         local logocheck = syn and "VapeLiteLogoSyn.png" or "VapeLiteLogo.png"
-        vapelite.Data = shared.VapeDeveloper and readfile(logocheck) or game:HttpGet("https://raw.githubusercontent.com/PixCarAtHome/farded/main/"..logocheck, true) or ""
+        vapelite.Data = shared.VapeDeveloper and readfile(logocheck) or game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeLiteForRoblox/main/"..logocheck, true) or ""
         vapelite.Size = Vector2.new(140, 64)
         vapelite.ZIndex = 2
         vapelite.Position = Vector2.new(3, 36)
         vapelite.Visible = false
-        vapelite2.Data = shared.VapeDeveloper and readfile("VapeLiteLogoShadow.png") or game:HttpGet("https://raw.githubusercontent.com/PixCarAtHome/farded/main/VapeLiteLogoShadow.png", true) or ""
+        vapelite2.Data = shared.VapeDeveloper and readfile("VapeLiteLogoShadow.png") or game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeLiteForRoblox/main/VapeLiteLogoShadow.png", true) or ""
         vapelite2.Size = Vector2.new(140, 64)
         vapelite2.Position = Vector2.new(5, 38)
         vapelite2.ZIndex = 1
@@ -245,12 +245,12 @@ if suc and type(web) ~= "boolean" then
             end
         end
     end)
-    if game.GameId == 8821374215 then
+    if game.GameId == 2619619496 then
         local Flamework = require(game:GetService("ReplicatedStorage")["rbxts_include"]["node_modules"]["@flamework"].core.out).Flamework
 		repeat task.wait() until Flamework.isInitialized
         local KnitClient = debug.getupvalue(require(lplr.PlayerScripts.TS.knit).setup, 6)
         local Client = require(game:GetService("ReplicatedStorage").TS.remotes).default.Client
-        if game.PlaceId == 8821374215 then
+        if game.PlaceId == 6872265039 then
             local bedwars = {
                 ["sprintTable"] = KnitClient.Controllers.SprintController,
             }
@@ -1392,7 +1392,7 @@ if suc and type(web) ~= "boolean" then
                 modulesenabled[tab.module] = tab.state
                 sendrequest({
                     msg = "writesettings",
-                    id = (game.PlaceId == 8821374215),
+                    id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
                     content = game:GetService("HttpService"):JSONEncode(modulesenabled)
                 })
             end
@@ -1405,7 +1405,7 @@ if suc and type(web) ~= "boolean" then
                 modulesenabled[tab.module.."/"..tab.setting] = tab.state
                 sendrequest({
                     msg = "writesettings",
-                    id = (game.PlaceId == 8821374215),
+                    id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
                     content = game:GetService("HttpService"):JSONEncode(modulesenabled)
                 })
             end
@@ -1417,7 +1417,7 @@ if suc and type(web) ~= "boolean" then
                 modulesenabled[tab.module.."/"..tab.setting] = tab.state
                 sendrequest({
                     msg = "writesettings",
-                    id = (game.PlaceId == 8821374215),
+                    id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
                     content = game:GetService("HttpService"):JSONEncode(modulesenabled)
                 })
             end
@@ -1433,7 +1433,7 @@ if suc and type(web) ~= "boolean" then
     end
     sendrequest({
         msg = "readsettings",
-        id = (game.PlaceId == 8821374215)
+        id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain")
     })
     local settingss = readsettings.Event:Wait()
     local suc2, settingstab = pcall(function() return game:GetService("HttpService"):JSONDecode(settingss) end)
@@ -1465,7 +1465,7 @@ if suc and type(web) ~= "boolean" then
     else
         sendrequest({
             msg = "writesettings",
-            id = (game.PlaceId == 8821374215),
+            id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
             content = "{}"
         })
         loaded = true
