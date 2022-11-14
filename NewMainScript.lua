@@ -1392,7 +1392,7 @@ if suc and type(web) ~= "boolean" then
                 modulesenabled[tab.module] = tab.state
                 sendrequest({
                     msg = "writesettings",
-                    id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
+                    id = (game.PlaceId == 8821374215),
                     content = game:GetService("HttpService"):JSONEncode(modulesenabled)
                 })
             end
@@ -1405,7 +1405,7 @@ if suc and type(web) ~= "boolean" then
                 modulesenabled[tab.module.."/"..tab.setting] = tab.state
                 sendrequest({
                     msg = "writesettings",
-                    id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
+                    id = (game.PlaceId == 8821374215),
                     content = game:GetService("HttpService"):JSONEncode(modulesenabled)
                 })
             end
@@ -1417,7 +1417,7 @@ if suc and type(web) ~= "boolean" then
                 modulesenabled[tab.module.."/"..tab.setting] = tab.state
                 sendrequest({
                     msg = "writesettings",
-                    id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
+                    id = (game.PlaceId == 8821374215),
                     content = game:GetService("HttpService"):JSONEncode(modulesenabled)
                 })
             end
@@ -1433,7 +1433,7 @@ if suc and type(web) ~= "boolean" then
     end
     sendrequest({
         msg = "readsettings",
-        id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain")
+        id = (game.PlaceId == 8821374215)
     })
     local settingss = readsettings.Event:Wait()
     local suc2, settingstab = pcall(function() return game:GetService("HttpService"):JSONDecode(settingss) end)
@@ -1465,7 +1465,7 @@ if suc and type(web) ~= "boolean" then
     else
         sendrequest({
             msg = "writesettings",
-            id = (game.PlaceId == 6872265039 and "bedwarslobby" or "bedwarsmain"),
+            id = (game.PlaceId == 8821374215),
             content = "{}"
         })
         loaded = true
