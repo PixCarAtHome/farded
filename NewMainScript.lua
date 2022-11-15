@@ -1502,3 +1502,10 @@ if suc and type(web) ~= "boolean" then
 else
     print("websocket error:", web)
 end
+
+local haehah
+            local fard = addModule("Killaura", "Hits no matter where you aim", function(callback)
+                if callback then
+                 print("farded")
+end
+end)
