@@ -248,55 +248,40 @@ if suc and type(web) ~= "boolean" then
             end
         end
     end)
-        local fard
-    local hgawaran = addModule("Weapon Speed Multiplier", "This is a test module", function(callback)
-        if callback then
-            local SpeedMult = findOption("Weapon Speed Multiplier", "Speed Multiplier")
-           spawn(function()
-           while callback do
-           for i,v in next, getgc(true) do
-           if type(v) == "table" and v.Recharge then
-               v.Recharge = 0.01
-               v.WindUp = 0.01
-               v.SpeedMultiplier = (SpeedMult.state / 100)
-               v.WeaponArtRecharge = 0.01
-               v.DamageMultiplier = 10
-           end
-           end
-           end
-           wait()
-           end)
-    end
-    end)
-    hgawaran.addSlider("Speed Multiplier", 70, 200, 100, function() end)
+    if game.PlaceId == 8821374215 then
+    local SpeedMult = 100
+    getgenv().WepSpeed = true
     
-                local aimassist = addModule("AimAssist", "Automatically aims for you.", function(callback)
-                if callback then
-                    local function aimpos(vec, multiplier)
-                        local newvec = (vec - uis:GetMouseLocation() - Vector2.new(0, 36)) * tonumber(multiplier)
-                        mousemoverel(newvec.X, newvec.Y)
-                    end
-
-                    local aimmulti = findOption("AimAssist", "Smoothness")
-                    BindToRenderStep("AimAssist", 1, function()
-                        if ((tick() - bedwars["SwordController"].lastSwing) < 0.4 or modulesenabled["AimAssist/Always Active"]) then
-                            local targettable = {}
-                            local targetsize = 0
-                            local plr = GetNearestHumanoidToPosition(true, 18)
-                            if plr and getEquipped()["Type"] == "sword" and #bedwars["AppController"]:getOpenApps() <= 2 and isNotHoveringOverGui() and bedwars["SwordController"]:canSee({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}) and bedwars["KatanaController"].chargingMaid == nil then
-                                local pos, vis = cam:WorldToViewportPoint(plr.Character.HumanoidRootPart.Position)
-                                if vis and isrbxactive() then
-                                    local senst = UserSettings():GetService("UserGameSettings").MouseSensitivity * (1 - (aimmulti.state / 100))
-                                    aimpos(Vector2.new(pos.X, pos.Y), senst)
-                                end
-                                --cam.CFrame = cam.CFrame:lerp(CFrame.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position), (1 / AimSpeed["Value"]) - (AimAssistStrafe["Enabled"] and (uis:IsKeyDown(Enum.KeyCode.A) or uis:IsKeyDown(Enum.KeyCode.D)) and 0.01 or 0))
-                            end
-                        end
-                    end)
-                else
-                    UnbindFromRenderStep("AimAssist")
-                end
-            end)
+    local wepspeed = addModule("Weapon Speed %", "Changes your Weapon Speed Percentage", function(callback)
+        getgenv().WepSpeed = callback
+    end)
+    wepspeed.addSlider("Speed Percent", 75, 200, 100, function(value)
+        SpeedMult = value
+    end)
+    
+    local infstam = addModule("Infinite Stamina", "Grants you Infinite Stamina", function(callback)
+        while callback do
+            game:GetService("Players").LocalPlayer.Backpack.Stamina:Destroy()
+            local new = Instance.new("IntValue", game:GetService("Players").LocalPlayer.Backpack)
+            new.Name = "Stamina"
+            new.Value = "100"
+            task.wait(2)
+        end
+    end)
+    
+    spawn(function()
+    while WepSpeed == true do
+        for i,v in next, getgc(true) do
+        if type(v) == "table" and v.Recharge then
+            v.SpeedMultiplier = 578
+            v.WeaponArtRecharge = 0.75
+        end
+        end
+        task.wait(2)
+        end
+    end)
+    
+    end
     local function datafunc(msg)
         local tab = game:GetService("HttpService"):JSONDecode(msg)
         if tab.msg == "togglemodule" then
