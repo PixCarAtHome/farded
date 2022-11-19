@@ -161,102 +161,11 @@ if suc and type(web) ~= "boolean" then
     end)
     local robloxgui = game:GetService("CoreGui"):WaitForChild("RobloxGui", 10)
 
-    local function UpdateHud()
-        if modulesenabled["Text GUI"] then
-            local text = ""
-            local text2 = ""
-            local tableofmodules = {}
-            local first = true
-            
-            for i,v in pairs(modulesenabled) do
-                local rendermodule = i:find("/") == nil and v 
-                if rendermodule and i ~= "TextGUI" then 
-                    table.insert(tableofmodules, {["Text"] = i})
-                end
-            end
-            table.sort(tableofmodules, function(a, b) 
-                draw.Text = a["Text"]
-                textsize1 = draw.TextBounds
-                draw.Text = b["Text"]
-                textsize2 = draw.TextBounds
-                return textsize1.X > textsize2.X 
-            end)
-            for i,v in pairs(textguitextdrawings) do 
-                pcall(function()
-                    v:Remove()
-                    textguitextdrawings[i] = nil
-                end)
-            end
-            for i,v in pairs(textguitextdrawings2) do 
-                pcall(function()
-                    v:Remove()
-                    textguitextdrawings2[i] = nil
-                end)
-            end
-            local num = 0
-            vapelite.Position = Vector2.new((robloxgui.AbsoluteSize.X - 4) - 140, 36)
-            vapelite2.Position = Vector2.new((robloxgui.AbsoluteSize.X - 4) - 139, 37)
-            for i,v in pairs(tableofmodules) do 
-                local newpos = robloxgui.AbsoluteSize.X - 4
-                local draw = Drawing.new("Text")
-                draw.Color = Color3.fromRGB(67, 117, 255)
-                draw.Size = 25
-                draw.Font = 0
-                draw.Text = v.Text
-                newpos = (newpos - (draw.TextBounds.X))
-
-                --onething.Visible and (textguirenderbkg["Enabled"] and 50 or 45) or
-                draw.Position = Vector2.new(newpos - 5, (70 + num + draw.TextBounds.Y))
-                local draw2 = Drawing.new("Text")
-                draw2.Color = Color3.fromRGB(22, 37, 81)
-                draw2.Size = 25
-                draw2.Font = 0
-                draw2.Text = v.Text
-                draw2.Position = draw.Position + Vector2.new(1, 1)
-                num = num + (draw.TextBounds.Y - 2)
-                draw2.ZIndex = 1
-                draw.ZIndex = 2
-                draw.Visible = true
-                draw2.Visible = true
-                textguitextdrawings[i] = draw
-                textguitextdrawings2[i] = draw2
-            end
-        end
-    end
-
-    local textguiconnection
-    local textgui = addModule("Text GUI", "Shows enabled modules", function(callback)
-        vapelite.Visible = callback
-        vapelite2.Visible = callback
-        if callback then 
-            textguiconnection = robloxgui:GetPropertyChangedSignal("AbsoluteSize"):connect(function()
-                UpdateHud()
-            end)
-            UpdateHud()
-        else
-            for i,v in pairs(textguitextdrawings) do 
-                pcall(function()
-                    v:Remove()
-                    textguitextdrawings[i] = nil
-                end)
-            end
-            for i,v in pairs(textguitextdrawings2) do 
-                pcall(function()
-                    v:Remove()
-                    textguitextdrawings2[i] = nil
-                end)
-            end
-        end
-    end)
     if game.PlaceId == 8821374215 then
-    local SpeedMult = 100
-    getgenv().WepSpeed = true
-    
-    local wepspeed = addModule("Weapon Speed %", "Changes your Weapon Speed Percentage", function(callback)
-        getgenv().WepSpeed = callback
-    end)
-    wepspeed.addSlider("Speed Percent", 75, 200, 100, function(value)
-        SpeedMult = value
+    local wepspeed = addModule("Weapon Speed %", "PlaceHolder", function(callback)
+        if callback then
+            
+        end
     end)
     
     local infstam = addModule("Infinite Stamina", "Grants you Infinite Stamina", function(callback)
@@ -269,15 +178,15 @@ if suc and type(web) ~= "boolean" then
         end
     end)
     
-    spawn(function()
-    while WepSpeed == true do
-        for i,v in next, getgc(true) do
-        if type(v) == "table" and v.Recharge then
-            v.SpeedMultiplier = 578
-            v.WeaponArtRecharge = 0.75
+    local infdodge = addModule("Infinite Dodge", "PlaceHolder", function(callback)
+        if callback then
+            
         end
-        end
-        task.wait(2)
+    end)
+    
+    local wlkspd = addModule("Walkspeed", "PlaceHolder", function(callback)
+        if callback then
+            
         end
     end)
     
