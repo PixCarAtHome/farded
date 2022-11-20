@@ -179,8 +179,9 @@ if suc and type(web) ~= "boolean" then
     end)
     
     local infdodge = addModule("Infinite Dodge", "PlaceHolder", function(callback)
-        if callback then
-            
+        while callback do
+            game:GetService("ReplicatedStorage").Dash:InvokeServer()
+            runService.Heartbeat:Wait()
         end
     end)
     
@@ -310,11 +311,4 @@ if suc and type(web) ~= "boolean" then
     end
 else
     print("websocket error:", web)
-end
-
-function parry()
-local VirtualInputManager = game:GetService('VirtualInputManager')
-print("Parry Activation")
-wait(APDelay)
-VirtualInputManager:SendMouseButtonEvent(1, 1, 1, true, game, 1)
 end
